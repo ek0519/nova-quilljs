@@ -1,5 +1,5 @@
 {
-    "name": "ek/quilljs",
+    "name": "ek0519/quilljs",
     "description": "A Laravel Nova field.",
     "keywords": [
         "laravel",
@@ -17,7 +17,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Ek\\Quilljs\\FieldServiceProvider"
+                "Ek0519\\Quilljs\\FieldServiceProvider"
             ]
         }
     },

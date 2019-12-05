@@ -1,6 +1,6 @@
 <?php
 
-namespace Ek\Quilljs\Http\Controllers;
+namespace Ek0519\Quilljs\Http\Controllers;
 
 
 use Illuminate\Routing\Controller;
