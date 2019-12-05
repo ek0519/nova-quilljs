@@ -57,7 +57,14 @@ return [
 
 ## Video embed
 
-Only support **Youtube** **Facebook**
+Only support **Youtube** **Facebook**，default size in Nova was **width 800px** and **height 450px**，define in css
+```
+.ql-video{
+  width: 800px;
+  height: 450px;
+}
+```
+
 
 ### Youtube
 
