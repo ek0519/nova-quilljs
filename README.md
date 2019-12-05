@@ -31,6 +31,7 @@ Quilljs::make('content')
         ->rules('required'),
 
 ```
+if you use public(filesystem), please use this command `php artisan storage:link`
 
 ## Customizing Quilljs Toolbar
 
