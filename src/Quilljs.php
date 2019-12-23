@@ -21,7 +21,6 @@ class Quilljs extends Trix
 
         $this->withMeta([
             'options'=> config('quilljs'),
-            'tooltip'=> config('tooltip')
         ]);
     }
     /**
@@ -41,6 +40,11 @@ class Quilljs extends Trix
         if ($request->exists($requestAttribute)) {
             $model->{$attribute} = $request[$requestAttribute];
         }
+    }
+
+    public function tooltip($value=false)
+    {
+        return $value == true ? $this->withMeta(['tooltip'=> config('tooltip')]) : null;
     }
 
     public function placeholder($value)
