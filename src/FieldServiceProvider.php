@@ -24,6 +24,7 @@ class FieldServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__ . '/config/quilljs.php' => config_path('quilljs.php'),
+            __DIR__ . '/config/tooltip.php' => config_path('tooltip.php'),
         ]);
 
         $this->publishes([

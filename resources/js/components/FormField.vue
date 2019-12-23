@@ -39,6 +39,7 @@ export default {
   props: ["resourceName", "resourceId", "field"],
   data() {
     return {
+      toolbarTips: this.field.tooltip,
       editorOption: {
         placeholder: this.field.placeholder,
         modules: {
@@ -138,7 +139,13 @@ export default {
     }
   },
   mounted() {
-    // console.log("this is current quill instance object", this.editor);
+    autotip:{
+      for(let item of this.toolbarTips){
+        let tip = document.querySelector('.quill-editor ' + item.Choice)
+        if(!tip) continue
+        tip.setAttribute('title', item.title)
+      }
+    }
   }
 };
 </script>
