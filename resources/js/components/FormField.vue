@@ -140,10 +140,12 @@ export default {
   },
   mounted() {
     autotip:{
-      for(let item of this.toolbarTips){
-        let tip = document.querySelector('.quill-editor ' + item.Choice)
-        if(!tip) continue
-        tip.setAttribute('title', item.title)
+      if(this.toolbarTips){
+        for(let item of this.toolbarTips){
+          let tip = document.querySelector('.quill-editor ' + item.Choice)
+          if(!tip) continue
+          tip.setAttribute('title', item.title)
+        }
       }
     }
   }
@@ -151,6 +153,10 @@ export default {
 </script>
 
 <style>
+.ql-editor p {
+  margin-top: 18px;
+  font-size: 18px;
+}
 .ql-video{
   width: 800px;
   height: 450px;
