@@ -62,8 +62,13 @@ class FieldServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/config/quilljs.php', 'quilljs');
-        $this->mergeConfigFrom(__DIR__ . '/config/tooltip.php', 'tooltip');
+        if(!$this->app['config']->has('quilljs')){
+            $this->mergeConfigFrom(__DIR__ . '/config/quilljs.php', 'quilljs');
+        }
+
+        if (!$this->app['config']->has('tooltip')) {
+            $this->mergeConfigFrom(__DIR__ . '/config/tooltip.php', 'tooltip');
+        }
     }
 
 }

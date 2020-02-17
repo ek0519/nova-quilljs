@@ -18,7 +18,7 @@ class Quilljs extends Trix
     public function __construct($name, $attribute = null, callable $resolveCallback = null)
     {
         parent::__construct($name, $attribute, $resolveCallback);
-
+        $this->tooltip();
         $this->withMeta([
             'options'=> config('quilljs'),
         ]);
