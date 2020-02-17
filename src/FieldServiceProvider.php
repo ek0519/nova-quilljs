@@ -25,7 +25,7 @@ class FieldServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/config/quilljs.php' => config_path('quilljs.php'),
             __DIR__ . '/config/tooltip.php' => config_path('tooltip.php'),
-        ]);
+        ], 'config');
 
         $this->publishes([
             __DIR__ . '/migrations/' => database_path('migrations'),
@@ -62,6 +62,8 @@ class FieldServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__ . '/config/quilljs.php', 'quilljs');
+        $this->mergeConfigFrom(__DIR__ . '/config/tooltip.php', 'tooltip');
     }
 
 }
