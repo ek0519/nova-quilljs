@@ -16,18 +16,20 @@
 <script>
 import { FormField, HandlesValidationErrors } from "laravel-nova";
 import { quillEditor, Quill } from "vue-quill-editor";
+import BlotFormatter from "quill-blot-formatter";
 import { ImageExtend, QuillWatch } from "quill-image-extend-module";
 import { VideoBlot } from "../../quilljs/VideoBlot";
 import Tooltip from "quill/ui/tooltip";
-
+import { CustomImageSpec } from '../../quilljs/CustomImageSpec';
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
 import "quill/dist/quill.bubble.css";
 
 Quill.register({
   "modules/ImageExtend": ImageExtend,
+  "modules/blotFormatter": BlotFormatter,
   "ui/tooltip": Tooltip,
-  'formats/video': VideoBlot
+  "formats/video": VideoBlot
 });
 
 
@@ -44,6 +46,9 @@ export default {
         placeholder: this.field.placeholder,
         modules: {
           // ...
+          blotFormatter: {
+            specs: [CustomImageSpec],
+          },
           ImageExtend: {
             loading: true,
             size: 2,
@@ -58,8 +63,8 @@ export default {
                 document.head.querySelector('meta[name="csrf-token"]').content
               );
             },
-            sizeError: () => { 
-              this.$toasted.show('圖片大小超過2MB', { type: 'error' })
+            sizeError: () => {
+              this.$toasted.show("圖片大小超過2MB", { type: "error" });
             },
             change: (xhr, formData) => {
               formData.append("draftId", this._uuid());
@@ -73,7 +78,7 @@ export default {
                 QuillWatch.emit(this.quill.id);
               },
               video(value) {
-                this.quill.theme.tooltip.edit('video');
+                this.quill.theme.tooltip.edit("video");
               }
             }
           }
@@ -139,12 +144,12 @@ export default {
     }
   },
   mounted() {
-    autotip:{
-      if(this.toolbarTips){
-        for(let item of this.toolbarTips){
-          let tip = document.querySelector('.quill-editor ' + item.Choice)
-          if(!tip) continue
-          tip.setAttribute('title', item.title)
+    autotip: {
+      if (this.toolbarTips) {
+        for (let item of this.toolbarTips) {
+          let tip = document.querySelector(".quill-editor " + item.Choice);
+          if (!tip) continue;
+          tip.setAttribute("title", item.title);
         }
       }
     }
@@ -157,13 +162,12 @@ export default {
   margin-top: 18px;
   font-size: 18px;
 }
-.ql-video{
+.ql-video {
   width: 800px;
   height: 450px;
 }
-.quill-editor{
+.quill-editor {
   height: 500px;
   padding-bottom: 20px;
 }
-  
 </style>

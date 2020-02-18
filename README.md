@@ -9,6 +9,10 @@ Install via composer
 composer require ek0519/quilljs
 ```
 
+## new feature!! **resize** and **align** image
+
+I add this module https://github.com/Fandom-OSS/quill-blot-formatter , thanks for https://github.com/Fandom-OSS
+
 ## Image upload
 
 This Nova field provides native attachments driver which works similar to [Trix File Uploads](https://nova.laravel.com/docs/2.0/resources/fields.html#trix-field).
