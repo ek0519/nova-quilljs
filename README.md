@@ -2,6 +2,22 @@
 
 A Laravel Nova implementation of the [Quill editor for Vue.js](https://github.com/surmon-china/vue-quill-editor)
 
+## What's new (20200228)?
+
+Thanks for [Milkhan](https://github.com/Milkhan)'s suggest, I add two option to modify editor's height(**default:300px**) and width(**full**).
+
+```
+use Ek0519\Quilljs\Quilljs;
+
+Quilljs::make('content')
+        ->withFiles('public')
+        ->fullWidth(false)
+        ->height(500)
+        ->rules('required'),
+```
+
+
+
 ## Installation
 
 Install via composer
@@ -9,7 +25,8 @@ Install via composer
 composer require ek0519/quilljs
 ```
 
-## new feature!! **resize** and **align** image
+
+## **resize** and **align** image
 
 I add this module https://github.com/Fandom-OSS/quill-blot-formatter , thanks for https://github.com/Fandom-OSS
 

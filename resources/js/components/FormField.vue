@@ -1,7 +1,8 @@
 <template>
-  <default-field :field="field" :errors="errors" :full-width-content="true">
+  <default-field :field="field" :errors="errors" :full-width-content="field.width">
     <template slot="field">
       <quill-editor
+        :style="css"
         v-model="value"
         ref="myQuillEditor"
         :options="editorOption"
@@ -141,6 +142,12 @@ export default {
   computed: {
     editor() {
       return this.$refs.myQuillEditor.quill;
+    },
+    css(){
+        return {
+            height: this.field.height + 'px',
+            'padding-bottom': '10px'
+        }
     }
   },
   mounted() {
@@ -165,9 +172,5 @@ export default {
 .ql-video {
   width: 800px;
   height: 450px;
-}
-.quill-editor {
-  height: 500px;
-  padding-bottom: 20px;
 }
 </style>

@@ -19,6 +19,8 @@ class Quilljs extends Trix
     {
         parent::__construct($name, $attribute, $resolveCallback);
         $this->tooltip();
+        $this->height();
+        $this->fullWidth();
         $this->withMeta([
             'options'=> config('quilljs'),
         ]);
@@ -42,13 +44,23 @@ class Quilljs extends Trix
         }
     }
 
-    public function tooltip($value=false)
+    public function tooltip(bool $value=false)
     {
         return $value == true ? $this->withMeta(['tooltip'=> config('tooltip') ?? []]) : null;
     }
 
-    public function placeholder($value)
+    public function placeholder(string $value)
     {
         return $this->withMeta(['placeholder'=> $value]);
+    }
+
+    public function height(int $value=300)
+    {
+        return $this->withMeta(['height' => $value]);
+    }
+
+    public function fullWidth(bool $value=true)
+    {
+        return $this->withMeta(['width' => $value]);
     }
 }
