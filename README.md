@@ -2,6 +2,11 @@
 
 A Laravel Nova implementation of the [Quill editor for Vue.js](https://github.com/surmon-china/vue-quill-editor)
 
+[![Latest Stable Version](https://poser.pugx.org/ek0519/quilljs/v/stable)](https://packagist.org/packages/ek0519/quilljs)
+[![Total Downloads](https://poser.pugx.org/ek0519/quilljs/downloads)](https://packagist.org/packages/ek0519/quilljs)
+[![License](https://poser.pugx.org/ek0519/quilljs/license)](https://packagist.org/packages/ek0519/quilljs)
+[![Monthly Downloads](https://poser.pugx.org/ek0519/quilljs/d/monthly)](https://packagist.org/packages/ek0519/quilljs)
+[![Daily Downloads](https://poser.pugx.org/ek0519/quilljs/d/daily)](https://packagist.org/packages/ek0519/quilljs)
 ## What's new (20200228)?
 
 Thanks for [Milkhan](https://github.com/Milkhan)'s suggest, I add two option to modify editor's height(**default:300px**) and width(**full**).
