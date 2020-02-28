@@ -11,17 +11,6 @@ A Laravel Nova implementation of the [Quill editor for Vue.js](https://github.co
 
 Thanks for [Milkhan](https://github.com/Milkhan)'s suggest, I add two option to modify editor's height(**default:300px**) and width(**full**).
 
-```
-use Ek0519\Quilljs\Quilljs;
-
-Quilljs::make('content')
-        ->withFiles('public')
-        ->fullWidth(false)
-        ->height(500)
-        ->rules('required'),
-```
-
-
 
 ## Installation
 
@@ -30,6 +19,22 @@ Install via composer
 composer require ek0519/quilljs
 ```
 
+## Modify quill's height and width
+
+### **fullWidth(value)**
+Boolean
+
+### **height(value)**
+Number (unit px)
+```
+use Ek0519\Quilljs\Quilljs;
+
+Quilljs::make('content')
+        ->withFiles('public')
+        ->fullWidth(false) (option, default full-width)
+        ->height(500) (option, default 300px)
+        ->rules('required'),
+```
 
 ## **resize** and **align** image
 
