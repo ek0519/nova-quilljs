@@ -52,7 +52,7 @@ export default {
           },
           ImageExtend: {
             loading: true,
-            size: 2,
+            size: this.field.maxFileSize ? this.field.maxFileSize : 2,
             name: "attachment",
             action: `/nova-vendor/quilljs/${this.resourceName}/upload/${this.field.attribute}`,
             response: res => {
@@ -65,7 +65,7 @@ export default {
               );
             },
             sizeError: () => {
-              this.$toasted.show("圖片大小超過2MB", { type: "error" });
+              this.$toasted.show(`Image size exceeds ${(this.field.maxFileSize ? this.field.maxFileSize : 2)}MB`, { type: "error" });
             },
             change: (xhr, formData) => {
               formData.append("draftId", this._uuid());
