@@ -21,6 +21,7 @@ class Quilljs extends Trix
         $this->tooltip();
         $this->height();
         $this->fullWidth();
+        $this->maxFileSize(2);
         $this->withMeta([
             'options'=> config('quilljs'),
         ]);
@@ -62,5 +63,10 @@ class Quilljs extends Trix
     public function fullWidth(bool $value=true)
     {
         return $this->withMeta(['width' => $value]);
+    }
+
+    public function maxFileSize(int $value = 2)
+    {
+        return $this->withMeta(['maxFileSize' => $value]);
     }
 }
