@@ -21,7 +21,7 @@ import BlotFormatter from "quill-blot-formatter";
 import { ImageExtend, QuillWatch } from "quill-image-extend-module";
 import { VideoBlot } from "../../quilljs/VideoBlot";
 import Tooltip from "quill/ui/tooltip";
-import { CustomImageSpec } from '../../quilljs/CustomImageSpec';
+import { CustomImageSpec } from "../../quilljs/CustomImageSpec";
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
 import "quill/dist/quill.bubble.css";
@@ -32,7 +32,6 @@ Quill.register({
   "ui/tooltip": Tooltip,
   "formats/video": VideoBlot
 });
-
 
 export default {
   mixins: [FormField, HandlesValidationErrors],
@@ -48,7 +47,7 @@ export default {
         modules: {
           // ...
           blotFormatter: {
-            specs: [CustomImageSpec],
+            specs: [CustomImageSpec]
           },
           ImageExtend: {
             loading: true,
@@ -65,7 +64,12 @@ export default {
               );
             },
             sizeError: () => {
-              this.$toasted.show(`Image size exceeds ${(this.field.maxFileSize ? this.field.maxFileSize : 2)}MB`, { type: "error" });
+              this.$toasted.show(
+                `Image size exceeds ${
+                  this.field.maxFileSize ? this.field.maxFileSize : 2
+                }MB`,
+                { type: "error" }
+              );
             },
             change: (xhr, formData) => {
               formData.append("draftId", this._uuid());
@@ -135,7 +139,7 @@ export default {
       // console.log("editor ready!", quill);
     },
     onEditorChange({ quill, html, text }) {
-      console.log("editor change!", quill, html, text);
+      // console.log("editor change!", quill, html, text);
       this.content = html;
     }
   },
@@ -143,11 +147,11 @@ export default {
     editor() {
       return this.$refs.myQuillEditor.quill;
     },
-    css(){
-        return {
-            height: this.field.height + 'px',
-            'padding-bottom': '10px'
-        }
+    css() {
+      return {
+        height: this.field.height + 41 + "px",
+        "padding-bottom": "40px"
+      };
     }
   },
   mounted() {
