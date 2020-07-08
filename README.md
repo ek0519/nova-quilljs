@@ -7,9 +7,9 @@ A Laravel Nova implementation of the [Quill editor for Vue.js](https://github.co
 [![License](https://poser.pugx.org/ek0519/quilljs/license)](https://packagist.org/packages/ek0519/quilljs)
 [![Monthly Downloads](https://poser.pugx.org/ek0519/quilljs/d/monthly)](https://packagist.org/packages/ek0519/quilljs)
 [![Daily Downloads](https://poser.pugx.org/ek0519/quilljs/d/daily)](https://packagist.org/packages/ek0519/quilljs)
-## What's new (20200228)?
+## What's new (20200708)?
 
-Thanks for [Milkhan](https://github.com/Milkhan)'s suggest, I add two option to modify editor's height(**default:300px**) and width(**full**).
+Thanks for [Gabrijel Gavranović](https://github.com/gavro)'s PR, add file upload max size **setting**.
 
 
 ## Installation
@@ -39,6 +39,20 @@ Quilljs::make('content')
 ## **resize** and **align** image
 
 I add this module https://github.com/Fandom-OSS/quill-blot-formatter , thanks for https://github.com/Fandom-OSS
+
+## Image upload size
+
+### **maxFileSize(size)**  
+size : Number, default 2(MB)  
+**example**
+```
+use Ek0519\Quilljs\Quilljs;
+
+Quilljs::make('content')
+        ->withFiles('public')
+        ->maxFileSize(3)
+        ->rules('required'),
+```
 
 ## Image upload
 
