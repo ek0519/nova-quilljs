@@ -5,6 +5,7 @@
         :style="css"
         v-model="value"
         ref="myQuillEditor"
+        :class="field.editorMaxHeightCss || 'ql-editor-max-h-100'"
         :options="editorOption"
         @blur="onEditorBlur($event)"
         @focus="onEditorFocus($event)"

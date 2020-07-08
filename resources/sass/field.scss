@@ -1,1 +1,6 @@
 // Nova Tool CSS
+@for $i from 5 through 10 {
+  .ql-editor-max-h-#{$i}0 {
+    max-height: #{$i}0%;
+  }
+}

@@ -69,4 +69,9 @@ class Quilljs extends Trix
     {
         return $this->withMeta(['maxFileSize' => $value]);
     }
+
+    public function editorMaxHeightCss(int $percent)
+    {
+        return $this->withMeta(['editorMaxHeightCss' => "ql-editor-max-h-{$percent}"]);
+    }
 }
