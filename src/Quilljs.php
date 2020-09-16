@@ -50,9 +50,9 @@ class Quilljs extends Trix
         return $value == true ? $this->withMeta(['tooltip'=> config('tooltip') ?? []]) : null;
     }
 
-    public function placeholder(string $value)
+    public function placeholder($text)
     {
-        return $this->withMeta(['placeholder'=> $value]);
+        return $this->withMeta(['placeholder'=> $text]);
     }
 
     public function height(int $value=300)
