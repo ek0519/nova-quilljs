@@ -1,5 +1,9 @@
 <template>
-  <default-field :field="field" :errors="errors" :full-width-content="field.width">
+  <default-field
+    :field="field"
+    :errors="errors"
+    :full-width-content="field.width"
+  >
     <template slot="field">
       <quill-editor
         :style="css"
@@ -30,13 +34,13 @@ Quill.register({
   "modules/ImageExtend": ImageExtend,
   "modules/blotFormatter": BlotFormatter,
   "ui/tooltip": Tooltip,
-  "formats/video": VideoBlot
+  "formats/video": VideoBlot,
 });
 
 export default {
   mixins: [FormField, HandlesValidationErrors],
   components: {
-    quillEditor
+    quillEditor,
   },
   props: ["resourceName", "resourceId", "field"],
   data() {
@@ -45,19 +49,18 @@ export default {
       editorOption: {
         placeholder: this.field.placeholder,
         modules: {
-          // ...
           blotFormatter: {
-            specs: [CustomImageSpec]
+            specs: [CustomImageSpec],
           },
           ImageExtend: {
             loading: true,
             size: this.field.maxFileSize ? this.field.maxFileSize : 2,
             name: "attachment",
             action: `/nova-vendor/quilljs/${this.resourceName}/upload/${this.field.attribute}`,
-            response: res => {
+            response: (res) => {
               return res.url;
             },
-            headers: xhr => {
+            headers: (xhr) => {
               xhr.setRequestHeader(
                 "X-CSRF-TOKEN",
                 document.head.querySelector('meta[name="csrf-token"]').content
@@ -73,7 +76,7 @@ export default {
             },
             change: (xhr, formData) => {
               formData.append("draftId", this._uuid());
-            }
+            },
           },
 
           toolbar: {
@@ -84,11 +87,11 @@ export default {
               },
               video(value) {
                 this.quill.theme.tooltip.edit("video");
-              }
-            }
-          }
-        }
-      }
+              },
+            },
+          },
+        },
+      },
     };
   },
   methods: {
@@ -100,7 +103,7 @@ export default {
       ) {
         d += performance.now(); //use high-precision timer if available
       }
-      return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(
+      return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (
         c
       ) {
         var r = (d + Math.random() * 16) % 16 | 0;
@@ -141,7 +144,7 @@ export default {
     onEditorChange({ quill, html, text }) {
       // console.log("editor change!", quill, html, text);
       this.content = html;
-    }
+    },
   },
   computed: {
     editor() {
@@ -150,9 +153,9 @@ export default {
     css() {
       return {
         height: this.field.height + 41 + "px",
-        "padding-bottom": "40px"
+        "padding-bottom": this.field.paddingBottom + 40 + "px",
       };
-    }
+    },
   },
   mounted() {
     autotip: {
@@ -164,7 +167,7 @@ export default {
         }
       }
     }
-  }
+  },
 };
 </script>
 

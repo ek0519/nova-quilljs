@@ -20,6 +20,7 @@ class Quilljs extends Trix
         parent::__construct($name, $attribute, $resolveCallback);
         $this->tooltip();
         $this->height();
+        $this->paddingBottom();
         $this->fullWidth();
         $this->maxFileSize(2);
         $this->withMeta([
@@ -58,6 +59,11 @@ class Quilljs extends Trix
     public function height(int $value=300)
     {
         return $this->withMeta(['height' => $value]);
+    }
+
+    public function paddingBottom(int $value=0)
+    {
+        return $this->withMeta(['paddingBottom' => $value]);
     }
 
     public function fullWidth(bool $value=true)

@@ -7,9 +7,9 @@ A Laravel Nova implementation of the [Quill editor for Vue.js](https://github.co
 [![License](https://poser.pugx.org/ek0519/quilljs/license)](https://packagist.org/packages/ek0519/quilljs)
 [![Monthly Downloads](https://poser.pugx.org/ek0519/quilljs/d/monthly)](https://packagist.org/packages/ek0519/quilljs)
 [![Daily Downloads](https://poser.pugx.org/ek0519/quilljs/d/daily)](https://packagist.org/packages/ek0519/quilljs)
-## What's new (20200708)?
+## What's new (2021122)?
 
-Thanks for [Gabrijel Gavranović](https://github.com/gavro)'s PR, add file upload max size **setting**.
+At some resolution, Editor overlaps field below, so I add **paddingBottom** , you can modify css through it.
 
 
 ## Installation
@@ -19,8 +19,18 @@ Install via composer
 composer require ek0519/quilljs
 ```
 
-## Modify quill's height and width
+## Modify quill's height, width, padding bottom
 
+### **paddingBottom**(integer)
+In nova interface was not easy to set css about quill padding bottom, at some resolution maybe can overlaps, you can use **paddingBottom** to modify.
+```php
+Quilljs::make(__('Content'), 'content')
+        ->paddingBottom(30)
+        ->withFiles('public')
+        ->placeholder('please enter here')
+        ->height(300)
+        ->rules('required'),
+```
 ### **fullWidth(value)**
 Boolean
 
