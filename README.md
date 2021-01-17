@@ -7,10 +7,13 @@ A Laravel Nova implementation of the [Quill editor for Vue.js](https://github.co
 [![License](https://poser.pugx.org/ek0519/quilljs/license)](https://packagist.org/packages/ek0519/quilljs)
 [![Monthly Downloads](https://poser.pugx.org/ek0519/quilljs/d/monthly)](https://packagist.org/packages/ek0519/quilljs)
 [![Daily Downloads](https://poser.pugx.org/ek0519/quilljs/d/daily)](https://packagist.org/packages/ek0519/quilljs)
-## What's new (2021122)?
+## What's new (2021-01-17)?
 
-At some resolution, Editor overlaps field below, so I add **paddingBottom** , you can modify css through it.
+[Image upload](https://nova.laravel.com/docs/3.0/resources/fields.html#trix-file-uploads)
 
+when you upload images without saving, upload recorder will inset to `nova_pending_trix_attachments` table.
+
+Before you saving resource, it will move the recorder to `nova_trix_attachments` table according `draft_id`, but it was not 100% perfect
 
 ## Installation
 
