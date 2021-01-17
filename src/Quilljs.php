@@ -4,6 +4,8 @@ namespace Ek0519\Quilljs;
 
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Trix\PendingAttachment;
+
 
 class Quilljs extends Trix
 {
@@ -43,7 +45,25 @@ class Quilljs extends Trix
     {
         if ($request->exists($requestAttribute)) {
             $model->{$attribute} = $request[$requestAttribute];
+            if ($request->persisted && $images = explode(',', $request->persisted)) {
+                if (!empty($images)) {
+                    $this->persistedImg($images, $model);
+                }
+            }
         }
+    }
+
+    public function persistedImg(array $images, $model)
+    {
+        foreach($images as $image) {
+            $pending = PendingAttachment::where('draft_id', $image)->first();
+            debug($pending, $image, $model, $this->getStorageDisk());
+            if ($pending) {
+                $pending->persist($this, $model);
+            }
+
+        }
+
     }
 
     public function tooltip(bool $value=false)

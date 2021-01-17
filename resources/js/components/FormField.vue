@@ -45,6 +45,7 @@ export default {
   props: ["resourceName", "resourceId", "field"],
   data() {
     return {
+      persisted: [],
       toolbarTips: this.field.tooltip,
       editorOption: {
         placeholder: this.field.placeholder,
@@ -75,7 +76,10 @@ export default {
               );
             },
             change: (xhr, formData) => {
-              formData.append("draftId", this._uuid());
+              const draftId = this._uuid()
+              formData.append("draftId", draftId)
+              this.persisted.push(draftId)
+
             },
           },
 
@@ -123,6 +127,8 @@ export default {
      */
     fill(formData) {
       formData.append(this.field.attribute, this.value || "");
+      formData.append('persisted', this.persisted || []);
+
     },
 
     /**

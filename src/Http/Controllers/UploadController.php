@@ -21,10 +21,9 @@ class UploadController extends Controller
                         ->findFieldByAttribute($request->field, function () {
                             abort(404);
                         });
-
         return response()->json(['url' => call_user_func(
             $field->attachCallback, $request
-        )]);
+        ),'all' => $request]);
     }
 
     /**
