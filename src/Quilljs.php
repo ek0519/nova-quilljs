@@ -45,7 +45,6 @@ class Quilljs extends Trix
     {
         if ($request->exists($requestAttribute)) {
             $model->{$attribute} = $request[$requestAttribute];
-            info(print_r($request->persisted, true));
             if ($request->persisted && $images = json_decode($request->persisted)) {
                 if (!empty($images)) {
                     $this->persistedImg($images, $model);
