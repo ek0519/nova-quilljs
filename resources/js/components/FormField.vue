@@ -127,7 +127,7 @@ export default {
      */
     fill(formData) {
       formData.append(this.field.attribute, this.value || "");
-      formData.append('persisted', this.persisted && this.persisted.length ? JSON.stringify(this.persisted) : JSON.stringify([]));
+      formData.append('persisted', JSON.stringify(this.persisted));
 
     },
 
