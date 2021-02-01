@@ -45,7 +45,7 @@ class Quilljs extends Trix
     {
         if ($request->exists($requestAttribute)) {
             $model->{$attribute} = $request[$requestAttribute];
-            file_put_contents("/Users/urbanjaklin/Desktop/QuillJsDebug.txt", print_r($request->persisted, true));
+            info(print_r($request->persisted, true));
             if ($request->persisted && $images = json_decode($request->persisted)) {
                 if (!empty($images)) {
                     $this->persistedImg($images, $model);
@@ -57,9 +57,7 @@ class Quilljs extends Trix
     public function persistedImg(array $images, $model)
     {
         foreach($images as $image) {
-            file_put_contents("/Users/urbanjaklin/Desktop/QuillJsDebug.txt", "$image\n", FILE_APPEND);
             $pending = PendingAttachment::where('draft_id', $image)->first();
-            file_put_contents("/Users/urbanjaklin/Desktop/QuillJsDebug.txt", print_r($pending, true) . "\n", FILE_APPEND);
 //            debug($pending, $image, $model, $this->getStorageDisk());
             if ($pending) {
                 $pending->persist($this, $model);
