@@ -16074,7 +16074,7 @@ __WEBPACK_IMPORTED_MODULE_1_vue_quill_editor__["Quill"].register({
      */
     fill: function fill(formData) {
       formData.append(this.field.attribute, this.value || "");
-      formData.append('persisted', JSON.stringify(this.persisted) || JSON.stringify([]));
+      formData.append('persisted', this.persisted && this.persisted.length ? JSON.stringify(this.persisted) : JSON.stringify([]));
     },
 
 
