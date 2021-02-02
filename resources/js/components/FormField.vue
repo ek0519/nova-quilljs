@@ -127,8 +127,9 @@ export default {
      */
     fill(formData) {
       formData.append(this.field.attribute, this.value || "");
-      formData.append('persisted', this.persisted || []);
-
+      if (!formData.has('persisted')) {
+        formData.append('persisted', JSON.stringify(this.persisted));
+      }
     },
 
     /**
