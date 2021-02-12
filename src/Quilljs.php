@@ -48,14 +48,15 @@ class Quilljs extends Trix
 
             $modelClass = get_class($model);
             info($modelClass);
-            $modelClass::created(function($object) use ($request) {
-                if ($request->persisted && $images = json_decode($request->persisted)) {
-                    if (!empty($images)) {
-                        $this->persistedImg($images, $object);
+            call_user_func_array("$modelClass::created", [
+                function($object) use ($request) {
+                    if ($request->persisted && $images = json_decode($request->persisted)) {
+                        if (!empty($images)) {
+                            $this->persistedImg($images, $object);
+                        }
                     }
                 }
-            });
-
+            ]);
         }
     }
 
