@@ -46,16 +46,27 @@ class Quilljs extends Trix
         if ($request->exists($requestAttribute)) {
             $model->{$attribute} = $request[$requestAttribute];
 
-            $modelClass = get_class($model);
-            call_user_func_array("$modelClass::created", [
-                function($object) use ($request) {
-                    if ($request->persisted && $images = json_decode($request->persisted)) {
-                        if (!empty($images)) {
-                            $this->persistedImg($images, $object);
-                        }
+            if (! isset($model->id)) {
+                $quilljs = $this;
+                $modelClass = get_class($model);
+                call_user_func_array("$modelClass::created", [
+                    function($object) use ($quilljs, $request) {
+                        $quilljs->persistImages($request, $object);
                     }
-                }
-            ]);
+                ]);
+            }
+            else {
+                $this->persistImages($request, $model);
+            }
+
+        }
+    }
+
+    function persistImages(NovaRequest $request, $object) {
+        if ($request->persisted && $images = json_decode($request->persisted)) {
+            if (!empty($images)) {
+                $this->persistedImg($images, $object);
+            }
         }
     }
 
