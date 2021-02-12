@@ -57,6 +57,7 @@ class Quilljs extends Trix
     {
         foreach($images as $image) {
             $pending = PendingAttachment::where('draft_id', $image)->first();
+            info(print_r($pending, true));
 //            debug($pending, $image, $model, $this->getStorageDisk());
             if ($pending) {
                 $pending->persist($this, $model);
