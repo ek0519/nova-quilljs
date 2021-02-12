@@ -44,6 +44,7 @@ class Quilljs extends Trix
                                                 $attribute)
     {
         if ($request->exists($requestAttribute)) {
+            info(print_r($model, true));
             $model->{$attribute} = $request[$requestAttribute];
             if ($request->persisted && $images = json_decode($request->persisted)) {
                 if (!empty($images)) {
@@ -57,7 +58,6 @@ class Quilljs extends Trix
     {
         foreach($images as $image) {
             $pending = PendingAttachment::where('draft_id', $image)->first();
-            info(print_r($pending, true));
 //            debug($pending, $image, $model, $this->getStorageDisk());
             if ($pending) {
                 $pending->persist($this, $model);
