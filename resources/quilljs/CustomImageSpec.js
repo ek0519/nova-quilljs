@@ -1,8 +1,8 @@
-import { DeleteAction, ResizeAction, AlignAction, ImageSpec } from 'quill-blot-formatter';
+import { DeleteAction, ResizeAction, ImageSpec } from 'quill-blot-formatter';
 
 export class CustomImageSpec extends ImageSpec {
     getActions() {
-        return [DeleteAction, ResizeAction, AlignAction];
+        return [DeleteAction, ResizeAction];
     }
 
     init() {
@@ -12,7 +12,7 @@ export class CustomImageSpec extends ImageSpec {
         this.formatter.quill.root.addEventListener('scroll', () => {
             this.formatter.repositionOverlay();
         });
-
+        console.log(123213);
         // handling align
         this.formatter.quill.on('editor-change', (eventName, ...args) => {
             if (eventName === 'selection-change' && args[2] === 'api') {
