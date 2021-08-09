@@ -7,7 +7,7 @@ A Laravel Nova implementation of the [Quill editor for Vue.js](https://github.co
 [![License](https://poser.pugx.org/ek0519/quilljs/license)](https://packagist.org/packages/ek0519/quilljs)
 [![Monthly Downloads](https://poser.pugx.org/ek0519/quilljs/d/monthly)](https://packagist.org/packages/ek0519/quilljs)
 [![Daily Downloads](https://poser.pugx.org/ek0519/quilljs/d/daily)](https://packagist.org/packages/ek0519/quilljs)
-## What's new (2021-01-17)?
+## What's new (2021-08-09)?
 
 [Image upload](https://nova.laravel.com/docs/3.0/resources/fields.html#trix-file-uploads)
 
@@ -87,6 +87,33 @@ Quilljs::make('content')
         ->withFiles('public')
         ->placeholder('please enter here')
         ->rules('required'),
+
+```
+
+### Work with other package [nova-translatable](https://github.com/optimistdigital/nova-translatable) and [nova-flexible-content](https://github.com/whitecube/nova-flexible-content)
+
+When you use other packages like [nova-translatable](https://github.com/optimistdigital/nova-translatable) and [nova-flexible-content](https://github.com/whitecube/nova-flexible-content), they will overwrite upload api.  
+
+Ex: origin `your_host/nova-vendor/quilljs/articles/upload/content` , 
+maybe overwrite to   
+`/nova-vendor/quilljs/articles/upload/content.en` or  
+`/nova-vendor/quilljs/articles/upload/content__SDAcscsdw`.  
+
+You can use 
+### **uploadUrlSplit(split_string)**  
+split_string : String  
+**example**
+
+```
+use Ek0519\Quilljs\Quilljs;
+
+Quilljs::make('content')
+        ->withFiles('public')
+        ->placeholder('please enter here')
+        ->uploadUrlSplit('.')
+        ->rules('required')
+        ->translatable(), // nova-translatable's method
+
 
 ```
 
