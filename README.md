@@ -9,11 +9,8 @@ A Laravel Nova implementation of the [Quill editor for Vue.js](https://github.co
 [![Daily Downloads](https://poser.pugx.org/ek0519/quilljs/d/daily)](https://packagist.org/packages/ek0519/quilljs)
 ## What's new (2021-08-09)?
 
-[Image upload](https://nova.laravel.com/docs/3.0/resources/fields.html#trix-file-uploads)
+Work with other package [nova-translatable](https://github.com/optimistdigital/nova-translatable) and [nova-flexible-content](https://github.com/whitecube/nova-flexible-content), maybe it can change Vue `this.fields.attribute`, so I add `uploadUrlSplit` method, You can correctly upload your image.
 
-when you upload images without saving, upload recorder will inset to `nova_pending_trix_attachments` table.
-
-Before you saving resource, it will move the recorder to `nova_trix_attachments` table according `draft_id`, but it was not 100% perfect
 
 ## Installation
 
