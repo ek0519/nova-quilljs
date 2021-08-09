@@ -6,7 +6,6 @@ use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Trix\PendingAttachment;
 
-
 class Quilljs extends Trix
 {
     /**
@@ -38,11 +37,12 @@ class Quilljs extends Trix
      * @param  string  $attribute
      * @return void
      */
-    protected function fillAttributeFromRequest(NovaRequest $request,
-                                                $requestAttribute,
-                                                $model,
-                                                $attribute)
-    {
+    protected function fillAttributeFromRequest(
+        NovaRequest $request,
+        $requestAttribute,
+        $model,
+        $attribute
+    ) {
         if ($request->exists($requestAttribute)) {
             $model->{$attribute} = $request[$requestAttribute];
 
@@ -50,19 +50,18 @@ class Quilljs extends Trix
                 $quilljs = $this;
                 $modelClass = get_class($model);
                 call_user_func_array("$modelClass::created", [
-                    function($object) use ($quilljs, $request) {
+                    function ($object) use ($quilljs, $request) {
                         $quilljs->persistImages($request, $object);
                     }
                 ]);
-            }
-            else {
+            } else {
                 $this->persistImages($request, $model);
             }
-
         }
     }
 
-    function persistImages(NovaRequest $request, $object) {
+    public function persistImages(NovaRequest $request, $object)
+    {
         if ($request->persisted && $images = json_decode($request->persisted)) {
             if (!empty($images)) {
                 $this->persistedImg($images, $object);
@@ -72,15 +71,13 @@ class Quilljs extends Trix
 
     public function persistedImg(array $images, $model)
     {
-        foreach($images as $image) {
+        foreach ($images as $image) {
             $pending = PendingAttachment::where('draft_id', $image)->first();
 //            debug($pending, $image, $model, $this->getStorageDisk());
             if ($pending) {
                 $pending->persist($this, $model);
             }
-
         }
-
     }
 
     public function tooltip(bool $value=false)
@@ -111,5 +108,10 @@ class Quilljs extends Trix
     public function maxFileSize(int $value = 2)
     {
         return $this->withMeta(['maxFileSize' => $value]);
+    }
+
+    public function uploadUrlSplit(string $value='')
+    {
+        return $this->withMeta(['split' => $value]);
     }
 }

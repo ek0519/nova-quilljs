@@ -35,8 +35,6 @@ class FieldServiceProvider extends ServiceProvider
             Nova::script('quilljs', __DIR__.'/../dist/js/field.js');
             Nova::style('quilljs', __DIR__.'/../dist/css/field.css');
         });
-
-        
     }
     /**
      * Register the tool's routes.
@@ -62,7 +60,7 @@ class FieldServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if(!$this->app['config']->has('quilljs')){
+        if (!$this->app['config']->has('quilljs')) {
             $this->mergeConfigFrom(__DIR__ . '/config/quilljs.php', 'quilljs');
         }
 
@@ -70,5 +68,4 @@ class FieldServiceProvider extends ServiceProvider
             $this->mergeConfigFrom(__DIR__ . '/config/tooltip.php', 'tooltip');
         }
     }
-
 }

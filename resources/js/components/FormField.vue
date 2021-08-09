@@ -57,7 +57,7 @@ export default {
             loading: true,
             size: this.field.maxFileSize ? this.field.maxFileSize : 2,
             name: "attachment",
-            action: `/nova-vendor/quilljs/${this.resourceName}/upload/${this.field.attribute}`,
+            action: `/nova-vendor/quilljs/${this.resourceName}/upload/${this.field.attribute.split(this.field.split)[0]}`,
             response: (res) => {
               return res.url;
             },
