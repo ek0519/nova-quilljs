@@ -2,6 +2,7 @@
   <default-field
     :field="field"
     :errors="errors"
+    :show-help-text="field.helpText != null"
     :full-width-content="field.width"
   >
     <template slot="field">
