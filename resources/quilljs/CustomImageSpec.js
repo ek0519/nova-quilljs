@@ -12,7 +12,6 @@ export class CustomImageSpec extends ImageSpec {
         this.formatter.quill.root.addEventListener('scroll', () => {
             this.formatter.repositionOverlay();
         });
-        console.log(123213);
         // handling align
         this.formatter.quill.on('editor-change', (eventName, ...args) => {
             if (eventName === 'selection-change' && args[2] === 'api') {

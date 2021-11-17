@@ -149,7 +149,7 @@ export default {
       // console.log("editor ready!", quill);
     },
     onEditorChange({ quill, html, text }) {
-      // console.log("editor change!", quill, html, text);
+      console.log("editor change!", quill, html, text);
       this.content = html;
     },
   },
