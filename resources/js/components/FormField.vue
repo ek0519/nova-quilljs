@@ -36,7 +36,7 @@ Quill.register({
   "ui/tooltip": Tooltip,
   "formats/video": VideoBlot,
 });
-
+const Delta = Quill.import('delta')
 export default {
   mixins: [FormField, HandlesValidationErrors],
   components: {
@@ -82,7 +82,6 @@ export default {
 
             },
           },
-
           toolbar: {
             container: this.field.options,
             handlers: {
@@ -149,9 +148,17 @@ export default {
       // console.log("editor ready!", quill);
     },
     onEditorChange({ quill, html, text }) {
-      console.log("editor change!", quill, html, text);
       this.content = html;
     },
+    autotip() {
+      if (this.toolbarTips) {
+        for (let item of this.toolbarTips) {
+          let tip = document.querySelector(".quill-editor " + item.Choice);
+          if (!tip) continue;
+          tip.setAttribute("title", item.title);
+        }
+      }
+    }
   },
   computed: {
     editor() {
@@ -165,15 +172,7 @@ export default {
     },
   },
   mounted() {
-    autotip: {
-      if (this.toolbarTips) {
-        for (let item of this.toolbarTips) {
-          let tip = document.querySelector(".quill-editor " + item.Choice);
-          if (!tip) continue;
-          tip.setAttribute("title", item.title);
-        }
-      }
-    }
+    this.autotip()
   },
 };
 </script>

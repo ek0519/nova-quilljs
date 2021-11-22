@@ -7,8 +7,9 @@ A Laravel Nova implementation of the [Quill editor for Vue.js](https://github.co
 [![License](https://poser.pugx.org/ek0519/quilljs/license)](https://packagist.org/packages/ek0519/quilljs)
 [![Monthly Downloads](https://poser.pugx.org/ek0519/quilljs/d/monthly)](https://packagist.org/packages/ek0519/quilljs)
 [![Daily Downloads](https://poser.pugx.org/ek0519/quilljs/d/daily)](https://packagist.org/packages/ek0519/quilljs)
-## What's new (2021-08-09)?
-
+## What's new (2021-11-22)?
+You can use custom quilljs setting in different fields. 
+### 2021-08-09
 Work with other package [nova-translatable](https://github.com/optimistdigital/nova-translatable) and [nova-flexible-content](https://github.com/whitecube/nova-flexible-content), maybe it can change Vue `this.fields.attribute`, so I add `uploadUrlSplit` method, You can correctly upload your image.
 
 
@@ -177,7 +178,7 @@ return [
 
 ## Customizing Quilljs Toolbar
 
-If you want to change toolbar's setting, you can change quilljs.php in config folder, referrence quilljs's web site https://quilljs.com/docs/modules/toolbar
+If you want to change toolbar's setting, you can change quilljs.php in config folder, reference quilljs's web site https://quilljs.com/docs/modules/toolbar
 
 ```php=
 return [
@@ -197,6 +198,30 @@ return [
     ["link", "image", "video"]
 ];
 ```
+
+or you can use new api `->config(array [])`.
+```php=
+Quilljs::make(__('Content'), 'content')
+        ->config([
+                ["bold", "italic", "underline", "strike"],
+                ["blockquote", "code-block"],
+                [ ['header'=> 1 ], ['header'=> 2]],
+                [['list'=> "ordered" ], ['list'=> "bullet" ]],
+                [[ 'script'=> "sub" ], [ 'script'=> "super" ]],
+                [[ 'indent'=> "-1" ], [ 'indent'=> "+1" ]],
+                [[ 'direction'=> "rtl" ]],
+                [[ 'size'=> ["small", false, "large", "huge"] ]],
+                [[ 'header'=> [1, 2, 3, 4, 5, 6, false] ]],
+                [[ 'color'=> [] ], [ 'background'=> [] ]],
+                [[ 'font'=> [] ]],
+                [[ 'align'=> [] ]],
+                ["clean"],
+                ["link", "image", "video"]
+        ]),
+
+```
+
+
 
 ## Video embed
 

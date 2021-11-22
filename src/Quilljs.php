@@ -24,9 +24,7 @@ class Quilljs extends Trix
         $this->paddingBottom();
         $this->fullWidth();
         $this->maxFileSize(2);
-        $this->withMeta([
-            'options'=> config('quilljs'),
-        ]);
+        $this->config();
     }
     /**
      * Hydrate the given attribute on the model based on the incoming request.
@@ -73,7 +71,6 @@ class Quilljs extends Trix
     {
         foreach ($images as $image) {
             $pending = PendingAttachment::where('draft_id', $image)->first();
-//            debug($pending, $image, $model, $this->getStorageDisk());
             if ($pending) {
                 $pending->persist($this, $model);
             }
@@ -85,7 +82,7 @@ class Quilljs extends Trix
         return $value == true ? $this->withMeta(['tooltip'=> config('tooltip') ?? []]) : null;
     }
 
-    public function config($options=[])
+    public function config(array $options=[])
     {
         if (empty($options)) {
             $options = config('quilljs');
