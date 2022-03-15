@@ -25,7 +25,7 @@ export default {
                 var data = JSON.parse(this.field.value)
                 var converter = new QuillDeltaToHtmlConverter(data, {});
                 converter.renderCustomWith(customOp => {
-                    console.log(customOp.insert.type)
+                    
                     if (customOp.insert.type === 'mention') {
                         const { id, value, username } = customOp.insert.value;
                         return `<a
