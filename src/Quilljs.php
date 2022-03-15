@@ -15,6 +15,8 @@ class Quilljs extends Trix
      */
     public $component = 'quilljs';
 
+    private $isDelta = false;
+
 
     public function __construct($name, $attribute = null, callable $resolveCallback = null)
     {
@@ -114,4 +116,19 @@ class Quilljs extends Trix
     {
         return $this->withMeta(['split' => $value]);
     }
+
+    public function isDelta($value = true)
+    {
+        $this->isDelta = $value;
+
+        return $this;
+    }
+
+    public function jsonSerialize()
+    {
+        return array_merge(parent::jsonSerialize(), [
+            'isDelta' => $this->isDelta,
+        ]);
+    }
+
 }

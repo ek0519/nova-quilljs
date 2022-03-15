@@ -1,14 +1,53 @@
 <template>
     <panel-item :field="field" >
         <template slot="value">
-            <excerpt :content="field.value" :should-show="field.shouldShow" />
+            <excerpt :content="converted" :should-show="field.shouldShow" />
         </template>
     </panel-item>
 </template>
 
 <script>
+import QuillDeltaToHtmlConverter from "quill-delta-to-html";
 export default {
     props: ['resource', 'resourceName', 'resourceId', 'field'],
+
+    data(){
+        return {
+            teste: null,
+        }
+    },
+
+    computed: {
+        converted() {
+            var QuillDeltaToHtmlConverter = require('quill-delta-to-html').QuillDeltaToHtmlConverter
+            
+            if (this.field.isDelta) {
+                var data = JSON.parse(this.field.value)
+                var converter = new QuillDeltaToHtmlConverter(data, {});
+                converter.renderCustomWith(customOp => {
+                    console.log(customOp.insert.type)
+                    if (customOp.insert.type === 'mention') {
+                        const { id, value, username } = customOp.insert.value;
+                        return `<a
+                          href="/resources/users/${id}"
+                          target="_blank"
+                          class="mention"
+                          id="${id}"
+                          >
+                            @${value}
+                          </a>`;
+                                }
+                                if (customOp.insert.type !== 'mention') return '';
+                                return null;
+                            });
+                return converter.convert()
+            } else {
+                return this.field.value;
+            }
+        }
+
+
+    }
 }
 </script>
 
@@ -17,5 +56,5 @@ export default {
   width: 800px;
   height: 450px;
 }
-  
+
 </style>
