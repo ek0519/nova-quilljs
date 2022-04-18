@@ -107,7 +107,7 @@ class Quilljs extends Trix
 
     public function fullWidth(bool $value=true)
     {
-        return $this->withMeta(['width' => $value]);
+        return $this->withMeta(['stacked' => $value]);
     }
 
     public function maxFileSize(int $value = 2)

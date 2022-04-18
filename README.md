@@ -7,11 +7,6 @@ A Laravel Nova implementation of the [Quill editor for Vue.js](https://github.co
 [![License](https://poser.pugx.org/ek0519/quilljs/license)](https://packagist.org/packages/ek0519/quilljs)
 [![Monthly Downloads](https://poser.pugx.org/ek0519/quilljs/d/monthly)](https://packagist.org/packages/ek0519/quilljs)
 [![Daily Downloads](https://poser.pugx.org/ek0519/quilljs/d/daily)](https://packagist.org/packages/ek0519/quilljs)
-## What's new (2021-11-22)?
-You can use custom quilljs setting in different fields. 
-### 2021-08-09
-Work with other package [nova-translatable](https://github.com/optimistdigital/nova-translatable) and [nova-flexible-content](https://github.com/whitecube/nova-flexible-content), maybe it can change Vue `this.fields.attribute`, so I add `uploadUrlSplit` method, You can correctly upload your image.
-
 
 ## Installation
 
@@ -247,3 +242,15 @@ Only support **Youtube** **Facebook**，default size in Nova was **width 800px**
 ![](https://i.imgur.com/lqDj6Y4.png)
 
 
+# Change log
+
+##v1.0.0 
+- Nova 4 compatibility
+- replace [vue-quill-editor](https://www.npmjs.com/package/vue-quill-editor) with [vue3-quill](https://www.npmjs.com/package/vue3-quill) for vue3 compatibility
+- removed field.css referance, as it's not used.
+
+## 2021-11-22
+- You can use custom quilljs setting in different fields.
+
+## 2021-08-09
+- Work with other package [nova-translatable](https://github.com/optimistdigital/nova-translatable) and [nova-flexible-content](https://github.com/whitecube/nova-flexible-content), maybe it can change Vue `this.fields.attribute`, so I add `uploadUrlSplit` method, You can correctly upload your image.
