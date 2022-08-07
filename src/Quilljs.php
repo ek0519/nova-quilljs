@@ -47,11 +47,13 @@ class Quilljs extends Trix
             if (! isset($model->id)) {
                 $quilljs = $this;
                 $modelClass = get_class($model);
-                call_user_func_array("$modelClass::created", [
-                    function ($object) use ($quilljs, $request) {
-                        $quilljs->persistImages($request, $object);
-                    }
-                ]);
+                if(method_exists($modelClass, 'created')) {
+                    call_user_func_array("$modelClass::created", [
+                        function ($object) use ($quilljs, $request) {
+                            $quilljs->persistImages($request, $object);
+                        }
+                    ]);
+                }
             } else {
                 $this->persistImages($request, $model);
             }
@@ -107,7 +109,7 @@ class Quilljs extends Trix
 
     public function fullWidth(bool $value=true)
     {
-        return $this->withMeta(['width' => $value]);
+        return $this->withMeta(['stacked' => $value]);
     }
 
     public function maxFileSize(int $value = 2)
